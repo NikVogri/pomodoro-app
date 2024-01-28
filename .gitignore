@@ -36,4 +36,4 @@ yarn-error.*
 
 
 # builds
-./android
+android
