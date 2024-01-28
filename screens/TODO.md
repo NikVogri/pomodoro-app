@@ -1,0 +1,8 @@
+-   migrate to new expo version
+-   update background colors
+    -   make sure each page has enough contract
+    -   make sure its easy to read letters
+-   use new icon (as ico and inside app)
+-   create and use splash screen
+-   prep for build
+-   build and deploy
