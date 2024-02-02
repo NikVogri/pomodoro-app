@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ScreenProps } from "./models";
 import { useFinishedStepNotification } from "../hooks/useFinishedStepNotification";
 import { focusHistory } from "../services/local-storage/FocusHistory";
@@ -14,7 +14,12 @@ function Break({ navigation, route }: ScreenProps<"Break">) {
 	const [continueSessionAvailable, setContinueSessionAvailable] = useState<boolean>(false);
 	const { breakTimeInSecs, repeat } = route.params;
 
-	const { sendNotification } = useFinishedStepNotification("timeToFocus");
+	const { scheduleNotification } = useFinishedStepNotification("timeToFocus");
+
+	useEffect(() => {
+		// Remind user that the timer is nearing 0
+		scheduleNotification(breakTimeInSecs - 20);
+	}, []);
 
 	const handleContinueSession = () => {
 		const params = { ...route.params, repeat: repeat - 1 };
@@ -32,10 +37,9 @@ function Break({ navigation, route }: ScreenProps<"Break">) {
 
 			if (!continueSessionAvailable) {
 				setContinueSessionAvailable(true);
-				await sendNotification();
 			}
 		},
-		[continueSessionAvailable, setContinueSessionAvailable, sendNotification]
+		[continueSessionAvailable, setContinueSessionAvailable]
 	);
 
 	const handleAutoCancelSession = async () => {

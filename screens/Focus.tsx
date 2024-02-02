@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
 import { ScreenProps } from "./models";
 import { useFinishedStepNotification } from "../hooks/useFinishedStepNotification";
@@ -13,7 +13,12 @@ import IdleCheck from "../components/IdleCheck";
 function Focus({ navigation, route }: ScreenProps<"Focus">) {
 	const [breakAvailable, setBreakAvailable] = useState<boolean>(false);
 	const { focusTimeInSecs, repeat } = route.params;
-	const { sendNotification } = useFinishedStepNotification("timeToTakeABreak");
+	const { scheduleNotification } = useFinishedStepNotification("timeToTakeABreak");
+
+	useEffect(() => {
+		// Remind user that the timer is nearing 0
+		scheduleNotification(focusTimeInSecs - 20);
+	}, []);
 
 	const handleTimerFinish = useCallback(
 		async (overboardTimeInSecs: number) => {
@@ -29,10 +34,9 @@ function Focus({ navigation, route }: ScreenProps<"Focus">) {
 				navigation.replace("Completed");
 			} else if (!breakAvailable) {
 				setBreakAvailable(true);
-				await sendNotification();
 			}
 		},
-		[repeat, breakAvailable, setBreakAvailable, sendNotification]
+		[repeat, breakAvailable, setBreakAvailable]
 	);
 
 	const handleCancelSession = async () => {

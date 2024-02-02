@@ -14,16 +14,16 @@ export const useFinishedStepNotification = (type: NotificationType) => {
 		};
 	}, []);
 
-	const handleSendNotification = async () => {
+	const handleScheduleNotification = async (inSeconds: number) => {
 		if (scheduledNotification) return; // Prevents scheduling multiple duplicate notifications
 
 		const payload = getNotificationPayloadByType(type);
 
-		const notificationId = await localNotificationsScheduler.scheduleNotification(payload, { seconds: 1 });
+		const notificationId = await localNotificationsScheduler.scheduleNotification(payload, { seconds: inSeconds });
 		if (!notificationId) return;
 
 		setScheduledNotification(notificationId);
 	};
 
-	return { sendNotification: handleSendNotification };
+	return { scheduleNotification: handleScheduleNotification };
 };

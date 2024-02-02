@@ -5,12 +5,12 @@ export const getNotificationPayloadByType = (type: NotificationType): { title: s
 		case "timeToFocus":
 			return {
 				title: "Time to focus!",
-				body: "Your break is up. It's time to focus!",
+				body: "Your break is almost up. It's time to focus!",
 			};
 		case "timeToTakeABreak":
 			return {
 				title: "Time to take a break!",
-				body: "You've been focusing for a while. Take a break!",
+				body: "You've been focusing for a while. Get ready to take a break!",
 			};
 		default:
 			throw new Error("Invalid notification type");
