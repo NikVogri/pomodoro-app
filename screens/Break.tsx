@@ -3,6 +3,7 @@ import { useCallback, useState } from "react";
 import { ScreenProps } from "./models";
 import { useFinishedStepNotification } from "../hooks/useFinishedStepNotification";
 import { focusHistory } from "../services/local-storage/FocusHistory";
+import { ALLOWED_IDLE_TIME_IN_SECONDS } from "../constants";
 
 import CountdownClock from "../components/CountdownClock";
 import Layout from "../components/UI/Layout";
@@ -20,12 +21,22 @@ function Break({ navigation, route }: ScreenProps<"Break">) {
 		navigation.replace("Focus", params);
 	};
 
-	const handleCountdownFinish = useCallback(async () => {
-		if (!continueSessionAvailable) {
-			setContinueSessionAvailable(true);
-			await sendNotification();
-		}
-	}, [continueSessionAvailable, setContinueSessionAvailable, sendNotification]);
+	const handleCountdownFinish = useCallback(
+		async (overboardTimeInSecs: number) => {
+			// Only applicable if app lost focus during session
+			// Overboard is calculated using lost focus timestamp and current timestamp
+			if (overboardTimeInSecs > ALLOWED_IDLE_TIME_IN_SECONDS) {
+				await handleAutoCancelSession();
+				return;
+			}
+
+			if (!continueSessionAvailable) {
+				setContinueSessionAvailable(true);
+				await sendNotification();
+			}
+		},
+		[continueSessionAvailable, setContinueSessionAvailable, sendNotification]
+	);
 
 	const handleAutoCancelSession = async () => {
 		await focusHistory.markCancelled(route.params.id);

@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { ScreenProps } from "./models";
 import { useFinishedStepNotification } from "../hooks/useFinishedStepNotification";
 import { focusHistory } from "../services/local-storage/FocusHistory";
+import { ALLOWED_IDLE_TIME_IN_SECONDS } from "../constants";
 
 import Layout from "../components/UI/Layout";
 import Button from "../components/UI/Button";
@@ -14,15 +15,25 @@ function Focus({ navigation, route }: ScreenProps<"Focus">) {
 	const { focusTimeInSecs, repeat } = route.params;
 	const { sendNotification } = useFinishedStepNotification("timeToTakeABreak");
 
-	const handleTimerFinish = useCallback(async () => {
-		if (repeat === 0) {
-			focusHistory.markCompleted(route.params.id);
-			navigation.replace("Completed");
-		} else if (!breakAvailable) {
-			setBreakAvailable(true);
-			await sendNotification();
-		}
-	}, [repeat, breakAvailable, setBreakAvailable, sendNotification]);
+	const handleTimerFinish = useCallback(
+		async (overboardTimeInSecs: number) => {
+			// Only applicable if app lost focus during session
+			// Overboard is calculated using lost focus timestamp and current timestamp
+			if (overboardTimeInSecs > ALLOWED_IDLE_TIME_IN_SECONDS) {
+				await handleAutoCancelSession();
+				return;
+			}
+
+			if (repeat === 0) {
+				focusHistory.markCompleted(route.params.id);
+				navigation.replace("Completed");
+			} else if (!breakAvailable) {
+				setBreakAvailable(true);
+				await sendNotification();
+			}
+		},
+		[repeat, breakAvailable, setBreakAvailable, sendNotification]
+	);
 
 	const handleCancelSession = async () => {
 		await focusHistory.markCancelled(route.params.id);

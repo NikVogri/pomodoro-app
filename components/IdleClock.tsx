@@ -16,7 +16,7 @@ function IdleClock({ onTimerFinish }: IdleClockProps) {
 	}, []);
 
 	useEffect(() => {
-		if (timeLeftInSeconds === 0) {
+		if (timeLeftInSeconds < 0) {
 			onTimerFinish();
 		}
 	}, [timeLeftInSeconds, onTimerFinish]);

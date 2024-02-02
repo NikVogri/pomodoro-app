@@ -5,28 +5,24 @@ import { secondsHHMMSS } from "../util/secondsHHMMSS";
 
 interface CountdownClockProps {
 	time: number;
-	onCountdownFinish: () => void;
+	onCountdownFinish: (overboardTimeInSecs: number) => void;
 }
 
 function CountdownClock({ time, onCountdownFinish }: CountdownClockProps) {
-	const [isFinished, setIsFinished] = useState<boolean>(false);
-	const { timeLeftInSeconds, startTimer } = useCountdownTimer(time);
+	const { timeLeftInSeconds, startTimer, stopTimer, timerActive } = useCountdownTimer(time);
 
 	useEffect(() => {
 		startTimer();
 	}, []);
 
 	useEffect(() => {
-		if (timeLeftInSeconds === 0) {
-			setIsFinished(true);
-		}
-	}, [timeLeftInSeconds, setIsFinished]);
+		if (!timerActive) return;
 
-	useEffect(() => {
-		if (isFinished) {
-			onCountdownFinish();
+		if (timeLeftInSeconds < 0) {
+			onCountdownFinish(Math.abs(timeLeftInSeconds));
+			stopTimer();
 		}
-	}, [isFinished, onCountdownFinish]);
+	}, [timeLeftInSeconds]);
 
 	return (
 		<View style={styles.container}>
