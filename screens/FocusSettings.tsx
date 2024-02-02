@@ -58,7 +58,7 @@ function FocusSettings({ navigation }: ScreenProps<"FocusSettings">) {
 	};
 
 	return (
-		<Layout backgroundColor="#F2994A">
+		<Layout backgroundColor="#9B51E0">
 			<View style={{ backgroundColor: "rgba(79,79,79,0.1	)", padding: 10 }}>
 				<Text style={styles.title}>Configure Session</Text>
 				<ConfigureTimeSlider

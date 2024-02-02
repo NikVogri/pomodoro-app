@@ -5,7 +5,7 @@ export const getNotificationPayloadByType = (type: NotificationType): { title: s
 		case "timeToFocus":
 			return {
 				title: "Time to focus!",
-				body: "You've been taking a break for a while. It's time to focus!",
+				body: "Your break is up. It's time to focus!",
 			};
 		case "timeToTakeABreak":
 			return {

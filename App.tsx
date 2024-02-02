@@ -3,7 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import { View } from "react-native";
 import * as splashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useState } from "react";
-import { setNotificationHandler } from "expo-notifications";
+import { AndroidNotificationPriority, setNotificationHandler } from "expo-notifications";
 import { notificationsPermissionHandler } from "./services/notification/NotificationsPermissionHandler";
 import { localNotificationsScheduler } from "./services/notification/LocalNotificationsScheduler";
 
@@ -16,7 +16,8 @@ setNotificationHandler({
 	handleNotification: async () => ({
 		shouldShowAlert: true,
 		shouldPlaySound: false,
-		shouldSetBadge: false,
+		shouldSetBadge: true,
+		priority: AndroidNotificationPriority.HIGH,
 	}),
 });
 
