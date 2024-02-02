@@ -27,7 +27,7 @@ function FocusHistoryList({ focuses }: FocusHistoryListProps) {
 
 const styles = StyleSheet.create({
 	list: {
-		height: "90%",
+		paddingBottom: 50,
 	},
 });
 
