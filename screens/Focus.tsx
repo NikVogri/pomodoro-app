@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import { ScreenProps } from "./models";
 import { useFinishedStepNotification } from "../hooks/useFinishedStepNotification";
 import { focusHistory } from "../services/local-storage/FocusHistory";
@@ -51,6 +51,15 @@ function Focus({ navigation, route }: ScreenProps<"Focus">) {
 		navigation.replace("Break", route.params);
 	};
 
+	const handlePromptCancelSession = () => {
+		Alert.alert("Quit?", "Are you sure you want to cancel the current session?", [
+			{
+				text: "Cancel",
+			},
+			{ text: "Yes", onPress: handleCancelSession },
+		]);
+	};
+
 	return (
 		<Layout backgroundColor="#eb5757">
 			<View>
@@ -60,7 +69,7 @@ function Focus({ navigation, route }: ScreenProps<"Focus">) {
 				{breakAvailable ? (
 					<IdleCheck text="Take a break" onPress={handleTakeABreak} onTimerFinish={handleAutoCancelSession} />
 				) : (
-					<Button onPress={handleCancelSession} type="flat">
+					<Button onPress={handlePromptCancelSession} type="flat">
 						Quit
 					</Button>
 				)}
