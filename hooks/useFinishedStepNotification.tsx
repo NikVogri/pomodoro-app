@@ -12,7 +12,7 @@ export const useFinishedStepNotification = (type: NotificationType) => {
 			if (!scheduledNotification) return;
 			localNotificationsScheduler.cancelScheduledNotification(scheduledNotification);
 		};
-	}, []);
+	}, [scheduledNotification]);
 
 	const handleScheduleNotification = async (inSeconds: number) => {
 		if (scheduledNotification) return; // Prevents scheduling multiple duplicate notifications
