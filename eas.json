@@ -7,18 +7,18 @@
 			"developmentClient": true,
 			"distribution": "internal",
 			"env": {
-				"ENVIRONMENT": "development"
+				"NODE_ENV": "development"
 			}
 		},
 		"preview": {
 			"distribution": "internal",
 			"env": {
-				"ENVIRONMENT": "prod"
+				"NODE_ENV": "prod"
 			}
 		},
 		"production": {
 			"env": {
-				"ENVIRONMENT": "prod"
+				"NODE_ENV": "prod"
 			}
 		}
 	},
