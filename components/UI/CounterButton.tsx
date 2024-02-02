@@ -31,9 +31,11 @@ const styles = StyleSheet.create({
 		opacity: 0.5,
 	},
 	text: {
-		fontSize: 25,
+		fontSize: 23,
+		lineHeight: 25,
 		textAlign: "center",
 		color: "#f2f2f2",
+		fontWeight: "bold",
 	},
 });
 

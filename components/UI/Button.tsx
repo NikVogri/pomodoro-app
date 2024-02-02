@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
 	},
 	buttonFlat: {
 		borderWidth: 0,
+		backgroundColor: "rgba(30, 30, 30, 0.1)",
 	},
 	text: {
 		fontSize: 20,
