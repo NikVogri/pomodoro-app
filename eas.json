@@ -1,0 +1,28 @@
+{
+	"cli": {
+		"version": ">= 6.0.0"
+	},
+	"build": {
+		"development": {
+			"developmentClient": true,
+			"distribution": "internal",
+			"env": {
+				"ENVIRONMENT": "development"
+			}
+		},
+		"preview": {
+			"distribution": "internal",
+			"env": {
+				"ENVIRONMENT": "prod"
+			}
+		},
+		"production": {
+			"env": {
+				"ENVIRONMENT": "prod"
+			}
+		}
+	},
+	"submit": {
+		"production": {}
+	}
+}
