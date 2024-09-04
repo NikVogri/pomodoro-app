@@ -4,6 +4,7 @@ import { ScreenProps } from "./models";
 import { useFinishedStepNotification } from "../hooks/useFinishedStepNotification";
 import { focusHistory } from "../services/local-storage/FocusHistory";
 import { ALLOWED_IDLE_TIME_IN_SECONDS } from "../constants";
+import { usePlaySound } from "../hooks/usePlaySound";
 
 import Layout from "../components/UI/Layout";
 import Button from "../components/UI/Button";
@@ -14,6 +15,7 @@ function Focus({ navigation, route }: ScreenProps<"Focus">) {
 	const [breakAvailable, setBreakAvailable] = useState<boolean>(false);
 	const { focusTimeInSecs, repeat } = route.params;
 	const { scheduleNotification } = useFinishedStepNotification("timeToTakeABreak");
+	const { playSound: playChime } = usePlaySound(require("../assets/chime.mp3"), { volume: 0.25 });
 
 	useEffect(() => {
 		// Remind user that the timer is nearing 0
@@ -27,6 +29,10 @@ function Focus({ navigation, route }: ScreenProps<"Focus">) {
 			if (overboardTimeInSecs > ALLOWED_IDLE_TIME_IN_SECONDS) {
 				await handleAutoCancelSession();
 				return;
+			}
+
+			if (overboardTimeInSecs < 5) {
+				await playChime();
 			}
 
 			if (repeat === 0) {
