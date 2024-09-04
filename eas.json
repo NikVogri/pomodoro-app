@@ -12,11 +12,16 @@
 		},
 		"preview": {
 			"distribution": "internal",
+			"autoIncrement": true,
+			"android": {
+				"buildType": "app-bundle"
+			},
 			"env": {
 				"NODE_ENV": "production"
 			}
 		},
 		"production": {
+			"autoIncrement": true,
 			"env": {
 				"NODE_ENV": "production"
 			}

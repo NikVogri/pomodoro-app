@@ -22,7 +22,8 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#EB5757"
       },
-      "package": "com.nickvogrinec.pomodoro"
+      "package": "com.nickvogrinec.pomodoro",
+      "versionCode": 2
     },
     "plugins": [
       [
