@@ -19,7 +19,7 @@ function Completed({ navigation }: ScreenProps<"Completed">) {
 				<Text style={styles.congratsText}>Congrats!</Text>
 				<Text style={styles.infoText}>You&apos;ve completed your session!</Text>
 				<Button onPress={handleContinue}>Continue</Button>
-				<Button onPress={handleShowFocusHistory}>Continue</Button>
+				<Button onPress={handleShowFocusHistory}>View History</Button>
 			</View>
 		</Layout>
 	);
