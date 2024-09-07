@@ -5,14 +5,16 @@ import { useFinishedStepNotification } from "../hooks/useFinishedStepNotificatio
 import { focusHistory } from "../services/local-storage/FocusHistory";
 import { ALLOWED_IDLE_TIME_IN_SECONDS } from "../constants";
 import { usePlaySound } from "../hooks/usePlaySound";
+import { useKeepAwake } from "expo-keep-awake";
 
 import Layout from "../components/UI/Layout";
 import Button from "../components/UI/Button";
 import CountdownClock from "../components/CountdownClock";
 import IdleCheck from "../components/IdleCheck";
-import AnimatedEmoji from "../components/UI/AnimatedEmoji";
 
 function Focus({ navigation, route }: ScreenProps<"Focus">) {
+	useKeepAwake();
+
 	const [breakAvailable, setBreakAvailable] = useState<boolean>(false);
 	const { focusTimeInSecs, repeat } = route.params;
 	const { scheduleNotification } = useFinishedStepNotification("timeToTakeABreak");

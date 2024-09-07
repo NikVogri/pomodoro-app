@@ -1,17 +1,19 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { useCallback, useEffect, useState } from "react";
 import { ScreenProps } from "./models";
 import { useFinishedStepNotification } from "../hooks/useFinishedStepNotification";
 import { focusHistory } from "../services/local-storage/FocusHistory";
 import { ALLOWED_IDLE_TIME_IN_SECONDS } from "../constants";
+import { useKeepAwake } from "expo-keep-awake";
 
 import CountdownClock from "../components/CountdownClock";
 import Layout from "../components/UI/Layout";
 import Button from "../components/UI/Button";
 import IdleCheck from "../components/IdleCheck";
-import AnimatedEmoji from "../components/UI/AnimatedEmoji";
 
 function Break({ navigation, route }: ScreenProps<"Break">) {
+	useKeepAwake();
+
 	const [continueSessionAvailable, setContinueSessionAvailable] = useState<boolean>(false);
 	const { breakTimeInSecs, repeat } = route.params;
 
