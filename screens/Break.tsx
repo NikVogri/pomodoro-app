@@ -9,6 +9,7 @@ import CountdownClock from "../components/CountdownClock";
 import Layout from "../components/UI/Layout";
 import Button from "../components/UI/Button";
 import IdleCheck from "../components/IdleCheck";
+import AnimatedEmoji from "../components/UI/AnimatedEmoji";
 
 function Break({ navigation, route }: ScreenProps<"Break">) {
 	const [continueSessionAvailable, setContinueSessionAvailable] = useState<boolean>(false);
@@ -44,24 +45,23 @@ function Break({ navigation, route }: ScreenProps<"Break">) {
 
 	const handleAutoCancelSession = async () => {
 		await focusHistory.markCancelled(route.params.id);
-		const params = { reason: "You were idle for too long" };
+		const params = { reason: "You were idle for too long." };
 		navigation.replace("CancelledSession", params);
 	};
 
 	return (
 		<Layout backgroundColor="#27ae60">
-			<View>
-				<Text style={styles.title}>Break</Text>
-				<Text style={styles.infoText}>Intervals left: {repeat}</Text>
-				<CountdownClock time={breakTimeInSecs} onCountdownFinish={handleCountdownFinish} />
-				{continueSessionAvailable ? (
-					<IdleCheck text="Focus" onPress={handleContinueSession} onTimerFinish={handleAutoCancelSession} />
-				) : (
-					<Button onPress={handleContinueSession} type="flat">
-						Skip break
-					</Button>
-				)}
-			</View>
+			<AnimatedEmoji source={require("../assets/gifs/emoji-relieved.gif")} />
+			<Text style={styles.title}>Break</Text>
+			<Text style={styles.infoText}>Intervals left: {repeat}</Text>
+			<CountdownClock time={breakTimeInSecs} onCountdownFinish={handleCountdownFinish} />
+			{continueSessionAvailable ? (
+				<IdleCheck text="Focus" onPress={handleContinueSession} onTimerFinish={handleAutoCancelSession} />
+			) : (
+				<Button onPress={handleContinueSession} type="flat">
+					Skip break
+				</Button>
+			)}
 		</Layout>
 	);
 }

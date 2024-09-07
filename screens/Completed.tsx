@@ -3,6 +3,7 @@ import { ScreenProps } from "./models";
 
 import Layout from "../components/UI/Layout";
 import Button from "../components/UI/Button";
+import AnimatedEmoji from "../components/UI/AnimatedEmoji";
 
 function Completed({ navigation }: ScreenProps<"Completed">) {
 	const handleContinue = () => {
@@ -15,15 +16,13 @@ function Completed({ navigation }: ScreenProps<"Completed">) {
 
 	return (
 		<Layout backgroundColor="#2d9cdb">
-			<View>
-				<Text style={{fontSize: 48, textAlign: "center", marginBottom: 10}}>🎉</Text>
-				<Text style={styles.congratsText}>Congrats!</Text>
-				<Text style={styles.infoText}>You&apos;ve completed your session!</Text>
-				<Button onPress={handleContinue} type="flat">
-					Continue
-				</Button>
-				<Button onPress={handleShowFocusHistory}>View History</Button>
-			</View>
+			<AnimatedEmoji source={require("../assets/gifs/emoji-popper.gif")} />
+			<Text style={styles.congratsText}>Congrats!</Text>
+			<Text style={styles.infoText}>You&apos;ve completed your session!</Text>
+			<Button onPress={handleContinue} type="flat">
+				Continue
+			</Button>
+			<Button onPress={handleShowFocusHistory}>View History</Button>
 		</Layout>
 	);
 }

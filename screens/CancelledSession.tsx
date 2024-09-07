@@ -1,8 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { ScreenProps } from "./models";
 
 import Layout from "../components/UI/Layout";
 import Button from "../components/UI/Button";
+import AnimatedEmoji from "../components/UI/AnimatedEmoji";
 
 function CancelledSession({ navigation, route }: ScreenProps<"CancelledSession">) {
 	const { reason } = route.params;
@@ -13,13 +14,12 @@ function CancelledSession({ navigation, route }: ScreenProps<"CancelledSession">
 
 	return (
 		<Layout backgroundColor="#bb6bd9">
-			<View>
-				<Text style={styles.title}>Session Cancelled {":("}</Text>
-				<Text style={styles.reason}>{reason}</Text>
-				<Button onPress={handleContinue} type="flat">
-					Continue
-				</Button>
-			</View>
+			<AnimatedEmoji source={require("../assets/gifs/emoji-sad.gif")} />
+			<Text style={styles.title}>Session Cancelled</Text>
+			<Text style={styles.reason}>{reason}</Text>
+			<Button onPress={handleContinue} type="flat">
+				Continue
+			</Button>
 		</Layout>
 	);
 }

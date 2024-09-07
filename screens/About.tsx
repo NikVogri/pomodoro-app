@@ -93,6 +93,11 @@ function About({ navigation }: ScreenProps<"About">) {
 				>
 					Source: https://en.wikipedia.org/wiki/Pomodoro_Technique
 				</Text>
+				<Text style={styles.subtitle}>Credits</Text>
+				<Text style={[styles.paragraph, { fontStyle: "italic", fontSize: 14 }]}>
+					Icons by Animated Emoji, sourced from https://googlefonts.github.io/noto-emoji-animation/, licensed
+					under CC BY 4.0.
+				</Text>
 			</ScrollView>
 		</Layout>
 	);
@@ -114,7 +119,7 @@ const styles = StyleSheet.create({
 		fontWeight: "bold",
 		marginBottom: 20,
 		color: "white",
-		textAlign: "center"
+		textAlign: "center",
 	},
 	subtitle: {
 		fontWeight: "bold",

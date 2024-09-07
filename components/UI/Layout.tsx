@@ -2,7 +2,7 @@ import { StyleSheet, View } from "react-native";
 import NavigationBackButton from "./NavigationBackButton";
 
 interface LayoutProps {
-	children: JSX.Element;
+	children: React.ReactNode;
 	backgroundColor?: string;
 	showBackButton?: boolean;
 }

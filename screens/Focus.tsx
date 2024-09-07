@@ -10,6 +10,7 @@ import Layout from "../components/UI/Layout";
 import Button from "../components/UI/Button";
 import CountdownClock from "../components/CountdownClock";
 import IdleCheck from "../components/IdleCheck";
+import AnimatedEmoji from "../components/UI/AnimatedEmoji";
 
 function Focus({ navigation, route }: ScreenProps<"Focus">) {
 	const [breakAvailable, setBreakAvailable] = useState<boolean>(false);
@@ -53,7 +54,7 @@ function Focus({ navigation, route }: ScreenProps<"Focus">) {
 
 	const handleAutoCancelSession = async () => {
 		await focusHistory.markCancelled(route.params.id);
-		const params = { reason: "You were idle for too long" };
+		const params = { reason: "You were idle for too long." };
 		navigation.replace("CancelledSession", params);
 	};
 
@@ -72,18 +73,17 @@ function Focus({ navigation, route }: ScreenProps<"Focus">) {
 
 	return (
 		<Layout backgroundColor="#eb5757">
-			<View>
-				<Text style={styles.title}>Focus</Text>
-				<Text style={styles.infoText}>Intervals left: {repeat}</Text>
-				<CountdownClock onCountdownFinish={handleTimerFinish} time={focusTimeInSecs} />
-				{breakAvailable ? (
-					<IdleCheck text="Take a break" onPress={handleTakeABreak} onTimerFinish={handleAutoCancelSession} />
-				) : (
-					<Button onPress={handlePromptCancelSession} type="underline">
-						Quit
-					</Button>
-				)}
-			</View>
+			<AnimatedEmoji source={require("../assets/gifs/emoji-thinking.gif")} />
+			<Text style={styles.title}>Focus</Text>
+			<Text style={styles.infoText}>Intervals left: {repeat}</Text>
+			<CountdownClock onCountdownFinish={handleTimerFinish} time={focusTimeInSecs} />
+			{breakAvailable ? (
+				<IdleCheck text="Take a break" onPress={handleTakeABreak} onTimerFinish={handleAutoCancelSession} />
+			) : (
+				<Button onPress={handlePromptCancelSession} type="underline">
+					Quit
+				</Button>
+			)}
 		</Layout>
 	);
 }
