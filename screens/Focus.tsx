@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Alert, StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text } from "react-native";
 import { ScreenProps } from "./models";
 import { useFinishedStepNotification } from "../hooks/useFinishedStepNotification";
 import { focusHistory } from "../services/local-storage/FocusHistory";
@@ -32,7 +32,9 @@ function Focus({ navigation, route }: ScreenProps<"Focus">) {
 				return;
 			}
 
+			console.log(overboardTimeInSecs);
 			if (overboardTimeInSecs < 5) {
+				console.log("playing chime");
 				await playChime();
 			}
 

@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { ScreenProps } from "./models";
 
 import Layout from "../components/UI/Layout";

@@ -1,4 +1,4 @@
-import { Animated, Easing, StyleSheet, Text, TextStyle, TouchableWithoutFeedback, ViewStyle } from "react-native";
+import { Animated, Easing, StyleSheet, Text, TextStyle, TouchableWithoutFeedback } from "react-native";
 
 interface ButtonProps {
 	onPress: () => void;
