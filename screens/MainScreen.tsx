@@ -14,7 +14,7 @@ function MainScreen({ navigation }: ScreenProps<"Main">) {
 			Animated.loop(
 				Animated.sequence([
 					Animated.timing(translateY, {
-						toValue: 3,
+						toValue: 5,
 						duration: 1500,
 						easing: Easing.inOut(Easing.ease),
 						useNativeDriver: true,
@@ -79,9 +79,10 @@ const styles = StyleSheet.create({
 		height: 84,
 		resizeMode: "contain",
 		alignSelf: "center",
+		marginBottom: 10,
 	},
 	title: {
-		fontSize: 56,
+		fontSize: 42,
 		fontWeight: "bold",
 		textAlign: "center",
 		marginBottom: 50,

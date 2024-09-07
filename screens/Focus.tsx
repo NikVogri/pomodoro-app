@@ -32,9 +32,7 @@ function Focus({ navigation, route }: ScreenProps<"Focus">) {
 				return;
 			}
 
-			console.log(overboardTimeInSecs);
 			if (overboardTimeInSecs < 5) {
-				console.log("playing chime");
 				await playChime();
 			}
 
