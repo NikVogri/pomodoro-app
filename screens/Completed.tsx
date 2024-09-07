@@ -16,9 +16,12 @@ function Completed({ navigation }: ScreenProps<"Completed">) {
 	return (
 		<Layout backgroundColor="#2d9cdb">
 			<View>
+				<Text style={{fontSize: 48, textAlign: "center", marginBottom: 10}}>🎉</Text>
 				<Text style={styles.congratsText}>Congrats!</Text>
 				<Text style={styles.infoText}>You&apos;ve completed your session!</Text>
-				<Button onPress={handleContinue}>Continue</Button>
+				<Button onPress={handleContinue} type="flat">
+					Continue
+				</Button>
 				<Button onPress={handleShowFocusHistory}>View History</Button>
 			</View>
 		</Layout>

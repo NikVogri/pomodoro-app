@@ -14,7 +14,7 @@ function IdleCheck({ onPress, onTimerFinish, text }: IdleCheckProps) {
 		<View style={styles.container}>
 			<IdleTimer onTimerFinish={onTimerFinish} />
 			<Text style={styles.text}>Click the button before the timer runs out to continue with the session!</Text>
-			<Button onPress={onPress}>{text}</Button>
+			<Button onPress={onPress} type="flat">{text}</Button>
 		</View>
 	);
 }

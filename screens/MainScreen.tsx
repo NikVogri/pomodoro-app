@@ -27,9 +27,13 @@ function MainScreen({ navigation }: ScreenProps<"Main">) {
 			<View style={styles.container}>
 				<Image source={require("../assets/pomodoro.png")} style={styles.logo} />
 				<Text style={styles.title}>Pomodoro</Text>
-				<Button onPress={startFocusHandler}>Focus Now</Button>
-				<Button onPress={showPastFocusHandler}>History</Button>
-				<Button onPress={showAboutHandler}>About</Button>
+				<Button onPress={startFocusHandler} type="flat">
+					Focus Now
+				</Button>
+				<Button onPress={showPastFocusHandler} type="flat">
+					History
+				</Button>
+				<Button onPress={showAboutHandler} type="flat">About</Button>
 				{isDevEnv && (
 					<Button onPress={showDebugHandler} type="flat">
 						Debug

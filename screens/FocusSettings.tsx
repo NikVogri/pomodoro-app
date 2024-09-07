@@ -79,8 +79,8 @@ function FocusSettings({ navigation }: ScreenProps<"FocusSettings">) {
 				/>
 
 				<RepeatCounter value={repeatCount} onCountChange={handleCountChange} />
-				<Button onPress={handleStartSession}>Start</Button>
-				<Button onPress={handleCancelSession} type="flat">
+				<Button onPress={handleStartSession} type="flat">Start</Button>
+				<Button onPress={handleCancelSession}>
 					Cancel
 				</Button>
 			</View>

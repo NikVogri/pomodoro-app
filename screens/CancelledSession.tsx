@@ -16,7 +16,9 @@ function CancelledSession({ navigation, route }: ScreenProps<"CancelledSession">
 			<View>
 				<Text style={styles.title}>Session Cancelled {":("}</Text>
 				<Text style={styles.reason}>{reason}</Text>
-				<Button onPress={handleContinue}>Continue</Button>
+				<Button onPress={handleContinue} type="flat">
+					Continue
+				</Button>
 			</View>
 		</Layout>
 	);

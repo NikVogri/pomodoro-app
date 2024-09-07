@@ -3,7 +3,7 @@ import { Animated, Easing, StyleSheet, Text, TouchableWithoutFeedback } from "re
 interface ButtonProps {
 	onPress: () => void;
 	children: string;
-	type?: "flat";
+	type?: "flat" | "underline";
 }
 
 function Button({ onPress, children, type }: ButtonProps) {
@@ -39,7 +39,15 @@ function Button({ onPress, children, type }: ButtonProps) {
 	return (
 		<TouchableWithoutFeedback onPressIn={onPressIn} onPressOut={onPressOut} onPress={onPress}>
 			<Animated.View style={[styles.button, animatedScaleStyle, type === "flat" && styles.buttonFlat]}>
-				<Text style={[styles.text, type === "flat" && styles.buttonTextFlat]}>{children}</Text>
+				<Text
+					style={[
+						styles.text,
+						type === "flat" && styles.buttonTextFlat,
+						type === "underline" && styles.buttonTextUnderline,
+					]}
+				>
+					{children}
+				</Text>
 			</Animated.View>
 		</TouchableWithoutFeedback>
 	);
@@ -47,8 +55,6 @@ function Button({ onPress, children, type }: ButtonProps) {
 
 const styles = StyleSheet.create({
 	button: {
-		borderColor: "rgba(242,242,242,0.5)",
-		borderWidth: 2,
 		width: "100%",
 		marginBottom: 10,
 		borderRadius: 5,
@@ -62,10 +68,13 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		paddingVertical: 15,
 		color: "#f2f2f2",
-		fontWeight: "800",
+		fontWeight: "500",
 	},
 	buttonTextFlat: {
 		fontWeight: "500",
+	},
+	buttonTextUnderline: {
+		textDecorationLine: "underline",
 	},
 });
 

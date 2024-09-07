@@ -84,7 +84,9 @@ function About({ navigation }: ScreenProps<"About">) {
 					completed, they are recorded, adding to a sense of accomplishment and providing raw data for
 					subsequent self-observation and improvement.
 				</Text>
-				<Button onPress={startSessionHandler}>Start a session now!</Button>
+				<Button onPress={startSessionHandler} type="flat">
+					Start a session now!
+				</Button>
 				<Text
 					style={[styles.paragraph, { fontStyle: "italic", fontSize: 14 }]}
 					onPress={() => Linking.openURL("https://en.wikipedia.org/wiki/Pomodoro_Technique")}
