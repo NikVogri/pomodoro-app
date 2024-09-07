@@ -1,12 +1,13 @@
-import { Animated, Easing, StyleSheet, Text, TouchableWithoutFeedback } from "react-native";
+import { Animated, Easing, StyleSheet, Text, TextStyle, TouchableWithoutFeedback, ViewStyle } from "react-native";
 
 interface ButtonProps {
 	onPress: () => void;
 	children: string;
 	type?: "flat" | "underline";
+	textStyle?: TextStyle;
 }
 
-function Button({ onPress, children, type }: ButtonProps) {
+function Button({ onPress, children, type, textStyle }: ButtonProps) {
 	const animatedValue = new Animated.Value(0);
 
 	const buttonScale = animatedValue.interpolate({
@@ -44,6 +45,7 @@ function Button({ onPress, children, type }: ButtonProps) {
 						styles.text,
 						type === "flat" && styles.buttonTextFlat,
 						type === "underline" && styles.buttonTextUnderline,
+						textStyle,
 					]}
 				>
 					{children}

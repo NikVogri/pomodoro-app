@@ -1,12 +1,19 @@
 import { StyleSheet, View } from "react-native";
+import NavigationBackButton from "./NavigationBackButton";
 
 interface LayoutProps {
 	children: JSX.Element;
 	backgroundColor?: string;
+	showBackButton?: boolean;
 }
 
-function Layout({ children, backgroundColor }: LayoutProps) {
-	return <View style={[styles.layout, { backgroundColor }]}>{children}</View>;
+function Layout({ children, backgroundColor, showBackButton }: LayoutProps) {
+	return (
+		<View style={[styles.layout, { backgroundColor }]}>
+			{showBackButton && <NavigationBackButton />}
+			{children}
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({

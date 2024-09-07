@@ -33,8 +33,12 @@ function FocusHistory({ navigation }: ScreenProps<"FocusHistory">) {
 	} else if (pastFocuses.length === 0) {
 		content = (
 			<View style={styles.noItemsContainer}>
-				<Text style={styles.noItemsText}>You haven&apos;t started a session yet!</Text>
-				<Button onPress={startSessionHandler}>Start now</Button>
+				<Text style={styles.noItemsText}>
+					You haven't started a session yet. Once you do, it will show up here!
+				</Text>
+				<Button onPress={startSessionHandler} type="flat">
+					Start now
+				</Button>
 			</View>
 		);
 	} else {
@@ -47,7 +51,7 @@ function FocusHistory({ navigation }: ScreenProps<"FocusHistory">) {
 	}
 
 	return (
-		<Layout backgroundColor="#2F80ED">
+		<Layout backgroundColor="#2F80ED" showBackButton>
 			<View style={styles.container}>{content}</View>
 		</Layout>
 	);
@@ -56,22 +60,25 @@ function FocusHistory({ navigation }: ScreenProps<"FocusHistory">) {
 const styles = StyleSheet.create({
 	container: {
 		paddingVertical: 15,
+		flex: 1,
 	},
 	title: {
 		fontSize: 24,
 		textAlign: "center",
 		fontWeight: "bold",
-		marginBottom: 30,
+		marginBottom: 15,
 		color: "#f2f2f2",
 	},
 	noItemsContainer: {
+		flex: 1,
 		alignItems: "center",
 		justifyContent: "center",
 	},
 	noItemsText: {
-		fontSize: 22,
-		fontWeight: "bold",
-		marginBottom: 15,
+		fontSize: 18,
+		textAlign: "center",
+		fontWeight: "normal",
+		marginBottom: 25,
 		color: "#f2f2f2",
 	},
 });

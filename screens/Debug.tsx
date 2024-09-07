@@ -17,8 +17,8 @@ function Debug({ navigation }: ScreenProps<"Debug">) {
 	};
 
 	return (
-		<Layout backgroundColor="#000">
-			<View>
+		<Layout backgroundColor="#000" showBackButton>
+			<View style={styles.container}>
 				<Text style={styles.disclaimer}>This screen should only be visible in development environment</Text>
 				<View>
 					<Button onPress={clearCacheHandler}>Clear cache</Button>
@@ -29,6 +29,9 @@ function Debug({ navigation }: ScreenProps<"Debug">) {
 }
 
 const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+	},
 	disclaimer: {
 		textAlign: "center",
 		fontSize: 18,

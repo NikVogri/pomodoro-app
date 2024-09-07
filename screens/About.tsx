@@ -10,7 +10,7 @@ function About({ navigation }: ScreenProps<"About">) {
 	};
 
 	return (
-		<Layout backgroundColor="#219653">
+		<Layout backgroundColor="#219653" showBackButton>
 			<ScrollView style={styles.container}>
 				<Image source={require("../assets/pomodoro.png")} style={styles.logo} />
 				<Text style={styles.title}>Pomodoro technique</Text>
@@ -107,7 +107,6 @@ const styles = StyleSheet.create({
 		height: 84,
 		resizeMode: "contain",
 		width: "auto",
-		marginTop: 25,
 	},
 	title: {
 		marginTop: 10,
@@ -115,6 +114,7 @@ const styles = StyleSheet.create({
 		fontWeight: "bold",
 		marginBottom: 20,
 		color: "white",
+		textAlign: "center"
 	},
 	subtitle: {
 		fontWeight: "bold",

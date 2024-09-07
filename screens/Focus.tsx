@@ -79,7 +79,7 @@ function Focus({ navigation, route }: ScreenProps<"Focus">) {
 				{breakAvailable ? (
 					<IdleCheck text="Take a break" onPress={handleTakeABreak} onTimerFinish={handleAutoCancelSession} />
 				) : (
-					<Button onPress={handlePromptCancelSession} type="flat">
+					<Button onPress={handlePromptCancelSession} type="underline">
 						Quit
 					</Button>
 				)}
