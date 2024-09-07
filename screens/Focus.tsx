@@ -73,7 +73,6 @@ function Focus({ navigation, route }: ScreenProps<"Focus">) {
 
 	return (
 		<Layout backgroundColor="#eb5757">
-			<AnimatedEmoji source={require("../assets/gifs/emoji-thinking.gif")} />
 			<Text style={styles.title}>Focus</Text>
 			<Text style={styles.infoText}>Intervals left: {repeat}</Text>
 			<CountdownClock onCountdownFinish={handleTimerFinish} time={focusTimeInSecs} />

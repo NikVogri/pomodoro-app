@@ -51,7 +51,6 @@ function Break({ navigation, route }: ScreenProps<"Break">) {
 
 	return (
 		<Layout backgroundColor="#27ae60">
-			<AnimatedEmoji source={require("../assets/gifs/emoji-relieved.gif")} />
 			<Text style={styles.title}>Break</Text>
 			<Text style={styles.infoText}>Intervals left: {repeat}</Text>
 			<CountdownClock time={breakTimeInSecs} onCountdownFinish={handleCountdownFinish} />
